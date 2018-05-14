@@ -24,7 +24,7 @@ describe('>>>H O M E --- Shallow Render REACT COMPONENTS',()=>{
 
     beforeEach(()=>{
         wrapper = shallow(<Home output={output}/>)
-        
+
     })
 
     it('+++ render the DUMB component', () => {
@@ -66,7 +66,7 @@ describe('>>>H O M E --- REACT-REDUX (Shallow + passing the {store} directly)',(
 
     beforeEach(()=>{
         store = mockStore(initialState)
-        container = shallow(<ConnectedHome store={store} /> )  
+        container = shallow(<ConnectedHome store={store} /> )
     })
 
     it('+++ render the connected(SMART) component', () => {
@@ -129,3 +129,17 @@ describe('>>>H O M E --- REACT-REDUX (actual Store + reducers) more of Integrati
 
 });
 //*******************************************************************************************************
+describe('access State in connected component',() => {
+    const initialState = {output:10}
+    const mockStore = configureStore()
+    let store,wrapper
+
+    beforeEach(()=>{
+        store = mockStore(initialState)
+        wrapper = mount( <Provider store={store}><ConnectedHome /></Provider> )
+    });
+
+    it('can acces state answer', () => {
+        expect(wrapper.find(Home).state('answer')).toBe(42)
+    })
+});

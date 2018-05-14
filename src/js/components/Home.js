@@ -9,13 +9,19 @@ const mapStateToProps = (state) => ({
 
 
 export class Home extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            answer: 42,
+        };
+    }
 	render(){
 		let IntegerA,IntegerB,IntegerC,IntegerD;
 
 		return(
 			<div className="container">
 				<h2>using React and Redux</h2>
-				<div>Input 1: 
+				<div>Input 1:
 					<input type="text" placeholder="Input 1" ref="input1"></input>
 				</div>
 				<div>Input 2 :
@@ -31,26 +37,26 @@ export class Home extends React.Component{
 						IntegerC = IntegerA+IntegerB
 
 						// console.log('A ' + IntegerA + ' B ' +IntegerB+ ' C ' +IntegerC)
-						
+
 						// ReactDOM.findDOMNode(this.refs.output).value = this.props.output
 						this.props.dispatch(addInputs(IntegerC))
 
 					  }
 					}>Add</button>
-					
+
 					<button id="subtract" onClick={ () => {
 						IntegerA = parseInt(ReactDOM.findDOMNode(this.refs.input1).value)
 						IntegerB = parseInt(ReactDOM.findDOMNode(this.refs.input2).value)
 						IntegerC = IntegerA-IntegerB
 
 						// console.log('A ' + IntegerA + ' B ' +IntegerB+ ' C ' +IntegerC)
-						
+
 						// ReactDOM.findDOMNode(this.refs.output).value = this.props.output
 						this.props.dispatch(subtractInputs(IntegerC))
 					  }
 					}>Subtract</button>
 				</div>
-				
+
 				<hr/>
 			</div>
 		);
